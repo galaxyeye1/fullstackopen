@@ -1,0 +1,17 @@
+Sequence Diagram    
+    participant browser
+    participant server
+    participant database
+
+//user writes notes in the input field and clicks the save button
+
+browser->>server : POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+activate server
+server->>database : save the new note
+activate database
+database->>server : new note saved successfully
+deactivate database
+server->>browser : 201 Created
+deactivate server
+
+//browser updates the User Interface to display the note without having to reload the page
