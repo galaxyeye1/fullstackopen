@@ -1,0 +1,36 @@
+Sequence Diagram
+    participant browser
+    server browser
+    participant database
+
+browser->>server : GET : https://studies.cs,helsinki.fi/exampleapp/spa
+activate server
+server->>browser : HTML document
+deactivate server
+
+browser->>server : GET https://studies.cs.helsinki.fi/exampleapp/main.css
+activate server
+server->>browser : CSS file
+deactivate server
+
+browser->>server : GET https://studies.cs.helsinki.fi/exampleapp/main.js
+activate server
+server->>browser : JavaScript file
+deactivate server
+
+
+//browser starts executing JavaScript code
+
+
+browser->>server : GET https://studies.cs.helsinki.fi/exampleapp/data.json
+activate server
+server->>database : Query for notes data
+activate database
+database->>server : Notes in JSON format
+deactivate database
+server->>browser : [{"content}" : "Single-page app notes", "date" : "2025-31-03",...]
+deactivate server
+
+//browser renders the notes dynamically using JavaScript
+
+
