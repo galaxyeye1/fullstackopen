@@ -1,0 +1,16 @@
+Sequence Diagram
+    participant browser
+    participant server
+browser->>server : POST https://studies.cs.helsinki.fi/exampleapp/newnote
+activate server
+server->>browser : 201 Created
+deactivate server
+
+//the server processes and saves the new note to the database
+
+browser->>server : GET https://studies.cs.helsinki.fi/exampleapp/data.json
+activate server
+server->>browser : [{"content}" : "HTML is easy", "date" : "2025-31-03]
+deactivate server
+
+//the browser executes the callback function to update the User Interface and display the new note
